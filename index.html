@@ -86,12 +86,6 @@ function initAutocomplete() {
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
-
-  // Insert KML mapping layers
-//    var ctaLayer = new google.maps.KmlLayer({
-//    url: 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml',
-//    map: map
-//  });
 }
 
   var markers = [];
