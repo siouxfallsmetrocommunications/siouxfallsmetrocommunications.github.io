@@ -77,11 +77,6 @@ function initAutocomplete() {
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
- // Create the KML layer 
-    var ctaLayer = new google.maps.KmlLayer({
-    url: 'https://drive.google.com/file/d/0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE',
-    map: map
-  });
 }
   
   var markers = [];
