@@ -72,6 +72,10 @@ function initAutocomplete() {
 //Create Layers
   layers [0] = new google.maps.KmlLayer('https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE', 
   {preserveViewport: true, suppressInfoWindows: false});
+  for (var i = 0; i < layers.length; i++) {
+        layers[i].setMap(null);
+      }
+  }
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
