@@ -3,6 +3,80 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+ <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+ <script type="text/javascript">
+    // define some variables to be used later
+    var map;
+    var overlays = [];
+    var kml = {
+        a: {
+            name: "Fire Response Areas",
+            url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE"
+        },
+        b: {
+            name: "Paramedics Plus Level 5",
+            url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDU2N2bHVEYjA2R2s"
+        }, 
+    // keep adding more, the url can be any kml file
+    };
+    // initialize our goo
+    function initializeMap() {
+        var options = {
+            center: new google.maps.LatLng(43.64837, -96.73737),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), options);
+        createTogglers(); // in this example I dynamically create togglers, you can otherwise use jQuery
+    };
+    google.maps.event.addDomListener(window, 'load', initializeMap);
+    // this does all the toggling work, id references the a b names I gave the kml array items
+    function toggleKML(checked, id) {
+        if (checked) {
+            var layer = new google.maps.KmlLayer(kml[id].url, {
+                preserveViewport: true,
+                suppressInfoWindows: false 
+            });
+            kml[id].obj = layer; // turns the layer into an object for reference later
+            kml[id].obj.setMap(map); // alternative to simply layer.setMap(map)
+        }
+        else {
+            kml[id].obj.setMap(null);
+            delete kml[id].obj;
+        }
+    };
+    // in this example create the controls dynamically, prop is the id name 
+    function createTogglers() {
+        var html = "<form><ul>";
+        for (var prop in kml) {
+            html += "<li id=\"selector-" + prop + "\"><input type='checkbox' id='" + prop + "'" +
+            " onclick='highlight(this, \"selector-" + prop + "\"); toggleKML(this.checked, this.id)' \/>" +
+            kml[prop].name + "<\/li>";
+        }
+        html += "<li class='control'><a href='#' onclick='removeAll();return false;'>" +
+        "Remove all layers<\/a><\/li>" + 
+        "<\/ul><\/form>";
+        document.getElementById("toggle_box").innerHTML = html;
+    };
+    // easy way to remove all objects, cycle through the kml array and delete items that exist
+    function removeAll() {
+        for (var prop in kml) {
+            if (kml[prop].obj) {
+                document.getElementById("selector-" + prop).className = 'normal'; // in normal js, this replaces any existing classname
+                   document.getElementById(prop).checked = false;
+                kml[prop].obj.setMap(null);
+                delete kml[prop].obj;
+            }
+        }
+    };
+    // append class on select, again old school way 
+    function highlight(box, listitem) {
+        var selected = 'selected';
+        var unselected = 'normal';
+        document.getElementById(listitem).className = (box.checked ? selected : unselected);
+    };
+ </script>
     <style>
       html, body {
         height: 100%;
