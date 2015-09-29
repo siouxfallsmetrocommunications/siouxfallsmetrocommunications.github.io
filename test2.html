@@ -23,6 +23,17 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 }
 
+
+
+
+</script>
+</head>
+<body onload="initialize()">
+Layer1 <input type="checkbox" id="layer_01" onclick="toggleLayers(0);"/>
+Layer2 <input type="checkbox" id="layer_02" onclick="toggleLayers(1);"/>
+<div id="map_canvas" style="height:500px; width:600px;"></div>
+<div id="status"></div>
+
 function toggleLayers(i)
 {
 
@@ -35,13 +46,5 @@ function toggleLayers(i)
   document.getElementById('status').innerHTML += "toggleLayers("+i+") [setMap("+layers[i].getMap()+"] returns status: "+layers[i].getStatus()+"<br>";
 }
 
-
-</script>
-</head>
-<body onload="initialize()">
-Layer1 <input type="checkbox" id="layer_01" onclick="toggleLayers(0);"/>
-Layer2 <input type="checkbox" id="layer_02" onclick="toggleLayers(1);"/>
-<div id="map_canvas" style="height:500px; width:600px;"></div>
-<div id="status"></div>
 </body>
 </html>
