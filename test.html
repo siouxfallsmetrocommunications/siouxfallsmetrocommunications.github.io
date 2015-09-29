@@ -56,9 +56,13 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="initialize()">
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+    <div id="map_canvas"></div>
+<div id="checkboxes">
+  <input type="checkbox" id="layer0" onClick="toggleLayer(0)" />Fire Response Areas<br />
+  </div>
     <script>
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
@@ -76,6 +80,15 @@ function initAutocomplete() {
         layers[i].setMap(null);
       }
   }
+//Toggle Layer Function
+function toggleLayer(i) {
+  if (layers[i].getMap() === null) {
+    layers[i].setMap(map);
+  }
+  else {
+    layers[i].setMap(null);
+  }
+}
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
