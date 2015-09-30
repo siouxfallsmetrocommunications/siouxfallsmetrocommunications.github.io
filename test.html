@@ -149,17 +149,7 @@ USGSOverlay.prototype.toggle = function() {
   }
 };
 
-// Detach the map from the DOM via toggleDOM().
-// Note that if we later reattach the map, it will be visible again,
-// because the containing <div> is recreated in the overlay's onAdd() method.
-USGSOverlay.prototype.toggleDOM = function() {
-  if (this.getMap()) {
-    // Note: setMap(null) calls OverlayView.onRemove()
-    this.setMap(null);
-  } else {
-    this.setMap(this.map_);
-  }
-};
+
 // [END region_hideshow]
 
 google.maps.event.addDomListener(window, 'load', initMap);
@@ -172,7 +162,6 @@ google.maps.event.addDomListener(window, 'load', initMap);
 <!-- Add an input button to initiate the toggle method on the overlay. -->
     <div id="floating-panel">
       <input type="button" value="Toggle visibility" onclick="overlay.toggle();"></input>
-      <input type="button" value="Toggle DOM attachment" onclick="overlay.toggleDOM();"></input>
     </div>
 <!-- [END region_toolbar] -->
     <div id="map"></div>
