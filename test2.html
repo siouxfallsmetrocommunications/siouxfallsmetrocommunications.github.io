@@ -22,15 +22,15 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 }
 
-function toggleLayers(i)
+function toggleLayers(i,theMap)
 {
 
-  if(layers[i].getMap()==null) {
-     layers[i].setMap(map);
+ if(layers[i].getMap()==null) {
+     layers[i].setMap(theMap);
   }
   else {
      layers[i].setMap(null);
-  }
+}
   document.getElementById('status').innerHTML += "toggleLayers("+i+") [setMap("+layers[i].getMap()+"] returns status: "+layers[i].getStatus()+"<br>";
 }
 
