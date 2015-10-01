@@ -23,6 +23,7 @@
         //declare layers
 		var uclaCircle; 
 		var UCLAParking;		
+		var KMLtest; 
  
 		function trace(message) 
 		{ 
@@ -72,6 +73,9 @@
 			//draw kml layer
 			UCLAParking = new google.maps.KmlLayer('http://yohman.bol.ucla.edu/kml/UCLAParking.kmz?dummy=' + (new Date()).getTime(),{ preserveViewport: true });
 			UCLAParking.setMap(map);
+			
+			//draw kml test layer
+			KMLtest = new google.maps.KmlLayer('https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDTElVcE5pNnpaLU0' + (new Date()).getTime(),{ preserveViewport: true });
 		}
 </script> 
 </head>
@@ -83,6 +87,7 @@
         <br>
         <input id="uclaCircle_checkbox" type="checkbox" checked="checked" onClick="yoh.toggleLayer(uclaCircle,'uclaCircle_checkbox')" /> UCLA 2km buffer<br>
         <input id="UCLAParking_checkbox" type="checkbox" checked="checked" onClick="yoh.toggleLayer(UCLAParking,'UCLAParking_checkbox')" /> UCLA Parking
+        <input id="KMLtest_checkbox" type="checkbox" checked="checked" onClick="yoh.toggleLayer(KMLtest,'KMLtest_checkbox')" /> KMLtest
     </div> 
     <!-- map div container --> 
     <div id="map_canvas" style="height:100%; margin-left:400px;"></div> 
