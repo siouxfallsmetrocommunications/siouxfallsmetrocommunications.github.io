@@ -15,7 +15,6 @@
     var G = google.maps;
     var layers = [];
     var bounds = null;
-
 function computeBounds() {
   var bounds = new G.LatLngBounds();
   for (var i=0; i<layers.length;i++) {
@@ -31,11 +30,10 @@ function computeBounds() {
     map.fitBounds(bounds);
   }
 }
-
 function toggle() {
     if (!this.kmlLayer ) {
         this.kmlLayer = new G.KmlLayer(
-            'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE' + this.id + '.kml',
+            'http://www.geocodezip.com/geoxml3_test/kmz/' + this.id + '.kmz',
             { preserveViewport:true } );
         this.kmlLayer.myId = layers.length;
         layers.push(this.kmlLayer);
@@ -57,7 +55,6 @@ function toggle() {
     bounds = null;
     computeBounds();
 };
-
     function initialize() {
         var layers = document.getElementsByTagName('input');
         var options = {
@@ -69,15 +66,12 @@ function toggle() {
             mapTypeControlOptions: {
                 style:G.MapTypeControlStyle.DROPDOWN_MENU }
         };
-
         map = new G.Map(document.getElementById('map'), options);
-
         for (var i=0; i<layers.length; i++) {
             layers[i].type = 'checkbox';
             G.event.addDomListener(layers[i], 'click', toggle)
         };
     };
-
     G.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
