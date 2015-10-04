@@ -69,10 +69,7 @@ function initAutocomplete() {
     zoom: 10,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-   var ctaLayer = new google.maps.KmlLayer({
-    url: 'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE',
-    map: map
-  });
+
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
