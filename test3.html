@@ -41,6 +41,13 @@ function initMap() {
     zoom: 10,
     center: {lat: 43.64837, lng: -96.73737}
   });
+  
+  var kmlLayer = new google.maps.KmlLayer({
+    url: 'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE',
+    suppressInfoWindows: true,
+    map: map
+  });
+  
   var geocoder = new google.maps.Geocoder();
 
   document.getElementById('submit').addEventListener('click', function() {
@@ -63,11 +70,6 @@ function geocodeAddress(geocoder, resultsMap) {
   });
 }
 
-      var kmlLayer = new google.maps.KmlLayer({
-    url: 'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE',
-    suppressInfoWindows: true,
-    map: map
-  });
 
     </script>
     
