@@ -55,6 +55,71 @@
         width: 345px;
       }
     </style>
+    
+  <script type="text/javascript">
+    var G = google.maps;
+    var layers = [];
+    var bounds = null;
+function computeBounds() {
+  var bounds = new G.LatLngBounds();
+  for (var i=0; i<layers.length;i++) {
+    if (layers[i].getMap() != null) {
+      if ((typeof bounds == "undefined") || bounds.isEmpty()) {
+        bounds = layers[i].getDefaultViewport();
+      } else {
+        bounds.union(layers[i].getDefaultViewport());
+      }
+    }
+  }
+  if ((typeof bounds != "undefined") && !bounds.isEmpty()) {
+    map.fitBounds(bounds);
+  }
+}
+function toggle() {
+    if (!this.kmlLayer ) {
+        this.kmlLayer = new G.KmlLayer(
+            'https://drive.google.com/uc?export=download&id=' + this.id,
+            { preserveViewport:true } );
+        this.kmlLayer.myId = layers.length;
+        layers.push(this.kmlLayer);
+        G.event.addListener(this.kmlLayer, "status_changed", function() {
+          document.getElementById('status').innerHTML += this.url+':'+this.getStatus()+"<br>";
+//          layers[this.myId].bounds=this.getDefaultViewport();
+        });
+        G.event.addListener(this.kmlLayer,"defaultviewport_changed", function() {
+          this.bounds = this.getDefaultViewport();
+          computeBounds();
+	});
+    }
+            
+    if ( this.kmlLayer.getMap() != null ) {
+        this.kmlLayer.setMap( null );
+    } else {
+        this.kmlLayer.setMap( map );
+    };
+    bounds = null;
+    computeBounds();
+};
+    function initialize() {
+        var layers = document.getElementsByTagName('input');
+        var options = {
+            center: new G.LatLng(43.64837, -96.73737),
+            zoom: 10,
+            mapTypeId: G.MapTypeId.TERRAIN,
+            scaleControl: true,
+            overviewMapControl: true,
+            mapTypeControlOptions: {
+                style:G.MapTypeControlStyle.DROPDOWN_MENU }
+        };
+        map = new G.Map(document.getElementById('map'), options);
+        for (var i=0; i<layers.length; i++) {
+            layers[i].type = 'checkbox';
+            G.event.addDomListener(layers[i], 'click', toggle)
+        };
+    };
+    G.event.addDomListener(window, 'load', initialize);
+</script>  
+    
   </head>
   <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
