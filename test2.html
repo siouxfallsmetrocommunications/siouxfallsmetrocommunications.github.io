@@ -35,7 +35,7 @@ function computeBounds() {
 function toggle() {
     if (!this.kmlLayer ) {
         this.kmlLayer = new G.KmlLayer(
-            'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE' + this.id + '.kmz',
+            'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE' + this.id + '.kml',
             { preserveViewport:true } );
         this.kmlLayer.myId = layers.length;
         layers.push(this.kmlLayer);
