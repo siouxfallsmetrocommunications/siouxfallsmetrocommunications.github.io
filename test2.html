@@ -33,7 +33,7 @@ function computeBounds() {
 function toggle() {
     if (!this.kmlLayer ) {
         this.kmlLayer = new G.KmlLayer(
-            'http://www.geocodezip.com/geoxml3_test/kmz/' + this.id + '.kmz',
+            'https://drive.google.com/uc?export=download&id=' + this.id,
             { preserveViewport:true } );
         this.kmlLayer.myId = layers.length;
         layers.push(this.kmlLayer);
@@ -77,8 +77,8 @@ function toggle() {
 </head>
 <body>
 <div id="map"></div>
-<label>SSD0</label><input id="SSD_adm0" rel="d1"/>
-<label>SSD1</label><input id="SSD_adm1" rel="d2"/>
+<label>Fire Response Areas</label><input id="0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE" rel="d1"/>
+<label>SD Counties</label><input id="0B2gbIV1dXlvDRndwdEpKTjRBeTA" rel="d2"/>
 <label>ESP0</label><input id="ESP_adm0" rel="d3"/>
 <label>ESP1</label><input id="ESP_adm1" rel="d4"/>
 <label>AFG0</label><input id="AFG_adm0" rel="d3"/>
