@@ -11,12 +11,12 @@ var map;
 // lets define some vars to make things easier later
 var kml = {
     a: {
-        name: "Fire Response Areas",
-        url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE"
+        name: "MPLS/STPL",
+        url: "https://maps.google.com/maps/ms?authuser=0&vps=5&ie=UTF8&msa=0&output=kml&msid=212971981154994583939.0004b06640255267e038c"
     },
     b: {
-        name: "SD Counties",
-        url: "'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRndwdEpKTjRBeTA"
+        name: "Bicycling Tour Routes",
+        url: "https://maps.google.com/maps/ms?authuser=0&vps=4&ie=UTF8&msa=0&output=kml&msid=212971981154994583939.0004902a1824bbc8c0fe9"
     }
 // keep adding more if ye like 
 };
@@ -24,8 +24,8 @@ var kml = {
 // initialize our goo
 function initializeMap() {
     var options = {
-        center: new google.maps.LatLng(43.64837, -96.73737),
-        zoom: 10,
+        center: new google.maps.LatLng(44.9812, -93.2687),
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
@@ -71,6 +71,17 @@ function createTogglers() {
     document.getElementById("toggle_box").innerHTML = html;
 };
 
+// easy way to remove all objects
+function removeAll() {
+    for (var prop in kml) {
+        if (kml[prop].obj) {
+            kml[prop].obj.setMap(null);
+            delete kml[prop].obj;
+        }
+
+    }
+};
+
 
 // Append Class on Select
 function highlight(box, listitem) {
@@ -95,7 +106,7 @@ highlight(checkit, 'selector1');
 
 </head>
 <body onload="startup()">
-<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+<div id="map_canvas" style="width: 100%; height: 600px;"></div>
 <div id="toggle_box" style="position: absolute; top: 100px; right: 20px; padding: 10px; background: #fff; z-index: 5; "></div>
 </body>
 </html>
