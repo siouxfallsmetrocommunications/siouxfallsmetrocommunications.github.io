@@ -11,12 +11,12 @@ var map;
 // lets define some vars to make things easier later
 var kml = {
     a: {
-        name: "MPLS/STPL",
-        url: "https://maps.google.com/maps/ms?authuser=0&vps=5&ie=UTF8&msa=0&output=kml&msid=212971981154994583939.0004b06640255267e038c"
+        name: "Fire Response Areas",
+        url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE"
     },
     b: {
-        name: "Bicycling Tour Routes",
-        url: "https://maps.google.com/maps/ms?authuser=0&vps=4&ie=UTF8&msa=0&output=kml&msid=212971981154994583939.0004902a1824bbc8c0fe9"
+        name: "SD Counties",
+        url: "'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRndwdEpKTjRBeTA"
     }
 // keep adding more if ye like 
 };
@@ -24,8 +24,8 @@ var kml = {
 // initialize our goo
 function initializeMap() {
     var options = {
-        center: new google.maps.LatLng(44.9812, -93.2687),
-        zoom: 13,
+        center: new google.maps.LatLng(43.64837, -96.73737),
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
@@ -69,17 +69,6 @@ function createTogglers() {
     "<\/ul><\/form>";
 
     document.getElementById("toggle_box").innerHTML = html;
-};
-
-// easy way to remove all objects
-function removeAll() {
-    for (var prop in kml) {
-        if (kml[prop].obj) {
-            kml[prop].obj.setMap(null);
-            delete kml[prop].obj;
-        }
-
-    }
 };
 
 
