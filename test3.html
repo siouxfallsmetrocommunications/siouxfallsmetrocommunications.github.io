@@ -71,16 +71,7 @@ function createTogglers() {
     document.getElementById("toggle_box").innerHTML = html;
 };
 
-// easy way to remove all objects
-function removeAll() {
-    for (var prop in kml) {
-        if (kml[prop].obj) {
-            kml[prop].obj.setMap(null);
-            delete kml[prop].obj;
-        }
 
-    }
-};
 
 
 // Append Class on Select
