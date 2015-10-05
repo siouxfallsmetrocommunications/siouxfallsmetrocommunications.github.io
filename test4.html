@@ -11,6 +11,10 @@
     src="http://maps.googleapis.com/maps/api/js?sensor=false">
 </script>
 
+
+</head>
+<body>
+	
 <script type="text/javascript">
     var G = google.maps;
     var layers = [];
@@ -73,9 +77,8 @@ function toggle() {
         };
     };
     G.event.addDomListener(window, 'load', initialize);
-</script>
-</head>
-<body>
+</script>	
+	
 <div id="map"></div>
 <div id="toggle_box" style="position: absolute; top: 100px; right: 20px; padding: 10px; background: #fff; z-index: 5; " 
 
