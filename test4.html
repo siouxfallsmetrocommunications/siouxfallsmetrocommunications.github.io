@@ -60,6 +60,51 @@
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <script>
+//Create layers    
+    var G = google.maps;
+    var layers = [];
+    var bounds = null;
+function computeBounds() {
+  var bounds = new G.LatLngBounds();
+  for (var i=0; i<layers.length;i++) {
+    if (layers[i].getMap() != null) {
+      if ((typeof bounds == "undefined") || bounds.isEmpty()) {
+        bounds = layers[i].getDefaultViewport();
+      } else {
+        bounds.union(layers[i].getDefaultViewport());
+      }
+    }
+  }
+  if ((typeof bounds != "undefined") && !bounds.isEmpty()) {
+    map.fitBounds(bounds);
+  }
+}
+function toggle() {
+    if (!this.kmlLayer ) {
+        this.kmlLayer = new G.KmlLayer(
+            'https://drive.google.com/uc?export=download&id=' + this.id,
+            { preserveViewport:true } );
+        this.kmlLayer.myId = layers.length;
+        layers.push(this.kmlLayer);
+        G.event.addListener(this.kmlLayer, "status_changed", function() {
+          document.getElementById('status').innerHTML += this.url+':'+this.getStatus()+"<br>";
+//          layers[this.myId].bounds=this.getDefaultViewport();
+        });
+        G.event.addListener(this.kmlLayer,"defaultviewport_changed", function() {
+          this.bounds = this.getDefaultViewport();
+          computeBounds();
+	});
+    }
+            
+    if ( this.kmlLayer.getMap() != null ) {
+        this.kmlLayer.setMap( null );
+    } else {
+        this.kmlLayer.setMap( map );
+    };
+    bounds = null;
+    computeBounds();
+};    
+    
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
