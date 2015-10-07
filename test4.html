@@ -165,6 +165,27 @@ function initAutocomplete() {
    map.setCenter(center);
   });
   // [END region_getplaces]
+  
+  //initialize layer
+          var layers = document.getElementsByTagName('input');
+        var options = {
+            center: new G.LatLng(43.64837, -96.73737),
+            zoom: 10,
+            mapTypeId: G.MapTypeId.TERRAIN,
+            scaleControl: true,
+            overviewMapControl: true,
+            mapTypeControlOptions: {
+                style:G.MapTypeControlStyle.DROPDOWN_MENU }
+        };
+        map = new G.Map(document.getElementById('map'), options);
+        for (var i=0; i<layers.length; i++) {
+            layers[i].type = 'checkbox';
+            G.event.addDomListener(layers[i], 'click', toggle)
+        };
+    };
+    G.event.addDomListener(window, 'load', initAutocomplete);
+  
+  
 }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhTQXonppCE2eVDQO5AHy11kMn-o27m_U&libraries=places&callback=initAutocomplete"
