@@ -58,7 +58,7 @@ function toggleKML(checked, id) {
     if (checked) {
         var layer = new google.maps.KmlLayer(kml[id].url, {
             preserveViewport: true,
-            suppressInfoWindows: false
+            suppressInfoWindows: true
         });
         // store kml as obj
         kml[id].obj = layer;
@@ -77,7 +77,19 @@ function createTogglers() {
         " onclick='highlight(this,\"selector-" + prop + "\"); toggleKML(this.checked, this.id)' \/>" +
         kml[prop].name + "<\/li>";
     }
+    html += "<li class='control'><a href='#' onclick='removeAll();return false;'>" +
+    "Remove all layers<\/a><\/li>" +
+    "<\/ul><\/form>";
     document.getElementById("toggle_box").innerHTML = html;
+};
+// easy way to remove all objects
+function removeAll() {
+    for (var prop in kml) {
+        if (kml[prop].obj) {
+            kml[prop].obj.setMap(null);
+            delete kml[prop].obj;
+        }
+    }
 };
 // Append Class on Select
 function highlight(box, listitem) {
@@ -86,7 +98,7 @@ function highlight(box, listitem) {
     document.getElementById(listitem).className = (box.checked ? selected : normal);
 };
 function startup() {
-    // for example, this toggles kml a on load and updates the menu selector
+    // for example, this toggles kml b on load and updates the menu selector
     var checkit = document.getElementById('a');
     checkit.checked = true;
     toggleKML(checkit, 'a');
@@ -94,7 +106,6 @@ function startup() {
 }
 </script>
 
- <title>Metro Backup Map Test</title>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
  <style>
