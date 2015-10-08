@@ -76,7 +76,19 @@ function createTogglers() {
         " onclick='highlight(this,\"selector-" + prop + "\"); toggleKML(this.checked, this.id)' \/>" +
         kml[prop].name + "<\/li>";
     }
-    
+    html += "<li class='control'><a href='#' onclick='removeAll();return false;'>" +
+    "Remove all layers<\/a><\/li>" +
+    "<\/ul><\/form>";
+    document.getElementById("toggle_box").innerHTML = html;
+};
+// easy way to remove all objects
+function removeAll() {
+    for (var prop in kml) {
+        if (kml[prop].obj) {
+            kml[prop].obj.setMap(null);
+            delete kml[prop].obj;
+        }
+    }
 };
 // Append Class on Select
 function highlight(box, listitem) {
@@ -93,7 +105,8 @@ function startup() {
 }
 </script>
 
-    <title>Metro Backup Map</title>
+ <title>Fire Backup Map</title>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
  <style>
     .selected {
