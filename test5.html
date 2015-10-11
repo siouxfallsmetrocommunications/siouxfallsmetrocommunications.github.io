@@ -57,7 +57,7 @@ function toggleKML(checked, id) {
     if (checked) {
         var layer = new google.maps.KmlLayer(kml[id].url, {
             preserveViewport: true,
-            suppressInfoWindows: true
+            suppressInfoWindows: false
         });
         // store kml as obj
         kml[id].obj = layer;
