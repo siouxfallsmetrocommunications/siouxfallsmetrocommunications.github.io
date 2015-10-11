@@ -56,7 +56,7 @@ function initSearchBox(map,controlId) {
 function toggleKML(checked, id) {
     if (checked) {
         var layer = new google.maps.KmlLayer(kml[id].url, {
-            preserveViewport: true,
+            preserveViewport: false,
             suppressInfoWindows: false
         });
         // store kml as obj
