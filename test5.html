@@ -28,6 +28,10 @@ function initializeMap() {
     createTogglers();
     initSearchBox(map, 'pac-input');
 };
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
 google.maps.event.addDomListener(window, 'load', initializeMap);
 function initSearchBox(map,controlId) {
     // Create the search box and link it to the UI element.
