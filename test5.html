@@ -6,9 +6,6 @@
 <script type="text/javascript">
 var map;
 
- var defaultBounds = new google.maps.LatLngBounds(
-  new google.maps.LatLng(43.37951, -97.25098),
-  new google.maps.LatLng(43.91115, -96.34532));
 
 // lets define some vars to make things easier later
 var kml = {
@@ -37,6 +34,12 @@ function initializeMap() {
     createTogglers();
     initSearchBox(map, 'pac-input');
 };
+
+
+ var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(43.37951, -97.25098),
+  new google.maps.LatLng(43.91115, -96.34532));
+
 google.maps.event.addDomListener(window, 'load', initializeMap);
 function initSearchBox(map,controlId) {
     // Create the search box and link it to the UI element.
