@@ -79,7 +79,7 @@ function initAutocomplete() {
         url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRlhLTm93S2Y3eDQ"
     }
     // keep adding more if ye like 
-};
+  };
   
   var options = {
     center: new google.maps.LatLng(43.64837, -96.73737),
@@ -148,6 +148,18 @@ function initAutocomplete() {
    });
   // [END region_getplaces]
 }
+
+// create the controls dynamically because it's easier, really
+function createTogglers() {
+    var html = "<form><ul>";
+    for (var prop in kml) {
+        html += "<li id=\"selector-" + prop + "\"><input type='checkbox' id='" + prop + "'" +
+        " onclick='highlight(this,\"selector-" + prop + "\"); toggleKML(this.checked, this.id)' \/>" +
+        kml[prop].name + "<\/li>";
+    }
+    document.getElementById("toggle_box").innerHTML = html;
+};
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhTQXonppCE2eVDQO5AHy11kMn-o27m_U&libraries=places&callback=initAutocomplete"
          async defer></script>
