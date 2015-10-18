@@ -137,7 +137,9 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
-  });
+       map.setZoom(16);
+   map.setCenter(center);
+   });
   // [END region_getplaces]
 }
 
