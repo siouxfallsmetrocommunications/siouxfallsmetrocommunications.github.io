@@ -71,11 +71,6 @@
 // pick list containing a mix of places and predicted search terms.
 
 function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 43.64837, lng: -96.73737},
-    zoom: 10,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
 
   // lets define some vars to make things easier later
   var kml = {
@@ -93,6 +88,14 @@ function initAutocomplete() {
     }
     // keep adding more if ye like 
 };
+
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 43.64837, lng: -96.73737},
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
 
   // Create the search box and link it to the UI element.
   var defaultBounds = new google.maps.LatLngBounds(
