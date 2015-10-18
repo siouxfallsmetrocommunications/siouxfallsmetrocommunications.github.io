@@ -77,6 +77,23 @@ function initAutocomplete() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
+  // lets define some vars to make things easier later
+  var kml = {
+    a: {
+        name: "Fire Response Areas",
+        url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE"
+    },
+    b: {
+        name: "SD Counties",
+        url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRndwdEpKTjRBeTA"
+    },
+    c: {
+        name: "Counties in Surrounding States",
+        url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRlhLTm93S2Y3eDQ"
+    }
+    // keep adding more if ye like 
+};
+
   // Create the search box and link it to the UI element.
   var defaultBounds = new google.maps.LatLngBounds(
   new google.maps.LatLng(43.38218, -97.29373),
