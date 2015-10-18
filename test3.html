@@ -87,9 +87,8 @@ function initAutocomplete() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   
-  var map = new google.maps.Map(document.getElementById('map'), options){
-
-  };
+  var map = new google.maps.Map(document.getElementById('map'), options);
+  
   // Create the search box and link it to the UI element.
   var defaultBounds = new google.maps.LatLngBounds(
   new google.maps.LatLng(43.38218, -97.29373),
