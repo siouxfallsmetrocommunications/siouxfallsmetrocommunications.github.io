@@ -78,6 +78,10 @@ function initAutocomplete() {
   });
 
   // Create the search box and link it to the UI element.
+  var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(43.38218, -97.29373),
+  new google.maps.LatLng(43.92451, -96.34532));
+  
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
