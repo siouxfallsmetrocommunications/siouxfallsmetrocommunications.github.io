@@ -90,6 +90,19 @@ function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), options);
   createTogglers();
   
+  // Append Class on Select
+function highlight(box, listitem) {
+    var selected = 'selected';
+    var normal = 'normal';
+    document.getElementById(listitem).className = (box.checked ? selected : normal);
+};
+function startup() {
+    // for example, this toggles kml b on load and updates the menu selector
+    var checkit = document.getElementById('a');
+    checkit.checked = true;
+    toggleKML(checkit, 'a');
+    highlight(checkit, 'selector1');
+  
   // Create the search box and link it to the UI element.
   var defaultBounds = new google.maps.LatLngBounds(
   new google.maps.LatLng(43.38218, -97.29373),
