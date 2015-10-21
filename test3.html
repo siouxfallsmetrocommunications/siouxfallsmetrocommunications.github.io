@@ -167,12 +167,12 @@ function startup() {
 // the important function... kml[id].xxxxx refers back to the top 
 function toggleKML(checked, id) {
     if (checked) {
-        var layer = new google.maps.KmlLayer(kml[id].url, {
-            preserveViewport: false,
+        var ctalayer = new google.maps.KmlLayer(kml[id].url, {
+            preserveViewport: true,
             suppressInfoWindows: false
         });
         // store kml as obj
-        kml[id].obj = layer;
+        kml[id].obj = ctalayer;
         kml[id].obj.setMap(map);
     }
     else {
