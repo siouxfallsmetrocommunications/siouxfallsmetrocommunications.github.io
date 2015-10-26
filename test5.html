@@ -55,6 +55,10 @@ function initSearchBox(map,controlId) {
         });
         map.fitBounds(place.geometry.viewport);
     });
+        map.fitBounds(bounds);
+       map.setZoom(16);
+   map.setCenter(center);
+   });
 }
 // the important function... kml[id].xxxxx refers back to the top 
 function toggleKML(checked, id) {
