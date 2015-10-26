@@ -57,12 +57,8 @@
     </style>
     
     <script>
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-function initAutocomplete() {
-  // lets define some vars to make things easier later
-  var kml = {
+    
+      var kml = {
     a: {
         name: "Fire Response Areas",
         url: "https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE"
@@ -77,6 +73,13 @@ function initAutocomplete() {
     }
     // keep adding more if ye like 
   };
+    
+// This example adds a search box to a map, using the Google Place Autocomplete
+// feature. People can enter geographical searches. The search box will return a
+// pick list containing a mix of places and predicted search terms.
+function initAutocomplete() {
+  // lets define some vars to make things easier later
+
   
   var options = {
     center: new google.maps.LatLng(43.64837, -96.73737),
