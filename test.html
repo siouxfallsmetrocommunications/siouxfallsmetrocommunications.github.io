@@ -137,6 +137,9 @@ function initAutocomplete() {
   });
   // [END region_getplaces]
 }
+      
+google.maps.event.addDomListener(window, 'load', initAutocomplete);      
+      
 // Name[0],Address[1],Coordinates[2]      
 var locations = [
     ["Fire Station 1", "100 S Minnesota Ave, Sioux Falls, SD", "43.547109,-96.731238", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
