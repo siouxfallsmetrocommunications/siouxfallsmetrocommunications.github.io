@@ -46,7 +46,7 @@ function initialize() {
   var bounds = new google.maps.LatLngBounds();
   document.getElementById('info').innerHTML = "found " + locations.length + " locations<br>";
   for (i = 0; i < locations.length; i++) {
-    var coordStr = locations[i][4];
+    var coordStr = locations[i][2];
     var coords = coordStr.split(",");
     var pt = new google.maps.LatLng(parseFloat(coords[0]), parseFloat(coords[1]));
     bounds.extend(pt);
