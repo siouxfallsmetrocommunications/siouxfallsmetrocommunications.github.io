@@ -41,6 +41,10 @@ function initialize() {
     center: new google.maps.LatLng(52.6699927, -0.7274620),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+  var ctaLayer = new google.maps.KmlLayer({
+  url: 'https://drive.google.com/uc?export=download&id=1118X48iUpX8x_1z5uvtp0ktE33zW55h1',
+  map: map
+  });
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
   var bounds = new google.maps.LatLngBounds();
