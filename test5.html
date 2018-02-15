@@ -16,7 +16,7 @@ body,
 <table border="1">
   <tr>
     <td>
-      <div id="map" style="height: 600px; width:500px;"></div>
+      <div id="map" style="height: 800px; width:75000px;"></div>
     </td>
     <td>
       <div id="side_bar"></div>
@@ -73,7 +73,7 @@ function initialize() {
 
 function codeAddress() {
   var numberOfResults = 25;
-  var numberOfDrivingResults = 5;
+  var numberOfDrivingResults = 11;
   var address = document.getElementById('address').value;
   geocoder.geocode({
     'address': address
