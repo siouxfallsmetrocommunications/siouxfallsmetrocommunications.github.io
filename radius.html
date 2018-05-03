@@ -137,6 +137,22 @@ var circle = new google.maps.Circle({
 });
 circle.bindTo('center', markerpoint, 'position');  
   
+  
+// Create marker 
+var markerpoint2 = new google.maps.Marker({
+  map: map,
+  position: new google.maps.LatLng(43.552629, -96.730809),
+  title: '75 Mile Radius'
+});
+
+// Add circle overlay and bind to marker
+var circle2 = new google.maps.Circle({
+  map: map,
+  radius: 120701,    // metres
+  fillColor: '#A5FF3F'
+});
+circle2.bindTo('center', markerpoint2, 'position');    
+  
 }
       
 
