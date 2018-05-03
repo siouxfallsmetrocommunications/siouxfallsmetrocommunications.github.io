@@ -121,8 +121,7 @@ function initAutocomplete() {
    map.setCenter(center);
   });
   // [END region_getplaces]
-}
-      
+  
 // Create marker 
 var markerpoint = new google.maps.Marker({
   map: map,
@@ -136,7 +135,11 @@ var circle = new google.maps.Circle({
   radius: 563270,    // metres
   fillColor: '#AA0000'
 });
-circle.bindTo('center', markerpoint, 'position');
+circle.bindTo('center', markerpoint, 'position');  
+  
+}
+      
+
       
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhTQXonppCE2eVDQO5AHy11kMn-o27m_U&libraries=places&callback=initAutocomplete"
