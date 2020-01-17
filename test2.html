@@ -1,92 +1,132 @@
 <!DOCTYPE html>
-<html><head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-<style type="text/css">
-    * {margin:0; padding:0; border:0; outline:0; font-size:100%; 
-        vertical-align:baseline}
-    html, body {width:100%; height:100%}
-    #map {width:100%; height:95%}
-</style>
-<script type="text/javascript" 
-    src="http://maps.googleapis.com/maps/api/js?sensor=false">
-</script>
-
-<script type="text/javascript">
-    var G = google.maps;
-    var layers = [];
-    var bounds = null;
-function computeBounds() {
-  var bounds = new G.LatLngBounds();
-  for (var i=0; i<layers.length;i++) {
-    if (layers[i].getMap() != null) {
-      if ((typeof bounds == "undefined") || bounds.isEmpty()) {
-        bounds = layers[i].getDefaultViewport();
-      } else {
-        bounds.union(layers[i].getDefaultViewport());
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
-    }
-  }
-  if ((typeof bounds != "undefined") && !bounds.isEmpty()) {
-    map.fitBounds(bounds);
-  }
+      #map {
+        height: 100%;
+      }
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-function toggle() {
-    if (!this.kmlLayer ) {
-        this.kmlLayer = new G.KmlLayer(
-            'https://drive.google.com/uc?export=download&id=' + this.id,
-            { preserveViewport:true } );
-        this.kmlLayer.myId = layers.length;
-        layers.push(this.kmlLayer);
-        G.event.addListener(this.kmlLayer, "status_changed", function() {
-          document.getElementById('status').innerHTML += this.url+':'+this.getStatus()+"<br>";
-//          layers[this.myId].bounds=this.getDefaultViewport();
-        });
-        G.event.addListener(this.kmlLayer,"defaultviewport_changed", function() {
-          this.bounds = this.getDefaultViewport();
-          computeBounds();
-	});
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+.pac-container {
+  font-family: Roboto;
+}
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+    </style>
+    <title>South Dakota Counties</title>
+    <style>
+      #target {
+        width: 345px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <script>
+// This example adds a search box to a map, using the Google Place Autocomplete
+// feature. People can enter geographical searches. The search box will return a
+// pick list containing a mix of places and predicted search terms.
+function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 43.64837, lng: -96.73737},
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+   var ctaLayer = new google.maps.KmlLayer({
+    url: 'https://drive.google.com/uc?export=download&id=0B2gbIV1dXlvDRndwdEpKTjRBeTA',
+    map: map
+  });
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+  var markers = [];
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
     }
-            
-    if ( this.kmlLayer.getMap() != null ) {
-        this.kmlLayer.setMap( null );
-    } else {
-        this.kmlLayer.setMap( map );
-    };
-    bounds = null;
-    computeBounds();
-};
-    function initialize() {
-        var layers = document.getElementsByTagName('input');
-        var options = {
-            center: new G.LatLng(43.64837, -96.73737),
-            zoom: 10,
-            mapTypeId: G.MapTypeId.TERRAIN,
-            scaleControl: true,
-            overviewMapControl: true,
-            mapTypeControlOptions: {
-                style:G.MapTypeControlStyle.DROPDOWN_MENU }
-        };
-        map = new G.Map(document.getElementById('map'), options);
-        for (var i=0; i<layers.length; i++) {
-            layers[i].type = 'checkbox';
-            G.event.addDomListener(layers[i], 'click', toggle)
-        };
-    };
-    G.event.addDomListener(window, 'load', initialize);
-</script>
-</head>
-<body>
-<div id="map"></div>
-<div id="toggle_box" style="position: absolute; top: 100px; right: 20px; padding: 10px; background: #fff; z-index: 5; " 
-
-<label>Fire Response Areas</label><input id="0B2gbIV1dXlvDVDhVLXc2N1Y5ZEE" rel="d1"/>
-<br>
-<label>SD Counties</label><input id="0B2gbIV1dXlvDRndwdEpKTjRBeTA" rel="d2"/>
-</div>
-
-<div id="status"></div>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"> 
-</script> 
-
-</body>
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+       map.setZoom(13);
+   map.setCenter(center);
+  });
+  // [END region_getplaces]
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhTQXonppCE2eVDQO5AHy11kMn-o27m_U&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
 </html>
